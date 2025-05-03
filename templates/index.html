@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Pelanggan{% endblock %}
+
+{% block content %}
+  <h2>Daftar Pelanggan</h2>
+  <a href="{{ url_for('tambah') }}" class="btn btn-primary">Tambah Pelanggan Baru</a>
+  <br><br>
+
+  {% if pelanggan_list %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Telepon</th>
+        <th>Tgl Registrasi</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pelanggan in pelanggan_list %}
+      <tr>
+        <td>{{ pelanggan.id }}</td>
+        <td>{{ pelanggan.nama }}</td>
+        <td>{{ pelanggan.email }}</td>
+        <td>{{ pelanggan.telepon }}</td>
+        <!-- Format tanggal jika perlu (opsional, perlu library tambahan mungkin) -->
+        <td>{{ pelanggan.tanggal_registrasi }}</td>
+        <td>
+          <!-- Link Edit (buat route 'edit' nanti) -->
+          <a href="{{ url_for('edit', id=pelanggan.id) }}" class="btn btn-sm btn-warning">Edit</a>
+
+          <!-- Form Hapus -->
+        <form action="{{ url_for('hapus', id=pelanggan.id) }}" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pelanggan ini?');">Hapus</button>
+        </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>Belum ada data pelanggan.</p>
+  {% endif %}
+{% endblock %}

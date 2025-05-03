@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Pelanggan Baru{% endblock %}
+
+{% block content %}
+  <h2>Tambah Pelanggan Baru</h2>
+
+  <!-- Form untuk menambah data -->
+  <!-- Action kosong berarti form akan dikirim ke URL yang sama (/tambah) -->
+  <form method="POST" action="">
+    <div class="form-group">
+      <label for="nama">Nama:</label>
+      <!-- 'required' attribute untuk validasi sisi klien sederhana -->
+      <input type="text" id="nama" name="nama" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="telepon">Nomor Telepon:</label>
+      <input type="tel" id="telepon" name="telepon">
+    </div>
+    <button type="submit" class="btn btn-success">Simpan Pelanggan</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Batal</a> <!-- Tambahkan tombol Batal -->
+  </form>
+
+  <!-- CSS sederhana untuk form-group bisa ditambahkan di style.css jika perlu -->
+  <style>
+    .form-group { margin-bottom: 15px; }
+    .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+  </style>
+
+{% endblock %}

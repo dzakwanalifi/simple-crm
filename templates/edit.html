@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Pelanggan{% endblock %}
+
+{% block content %}
+  <!-- Pastikan variabel pelanggan ada sebelum mencoba akses fieldnya -->
+  {% if pelanggan %}
+    <h2>Edit Pelanggan: {{ pelanggan.nama }} (ID: {{ pelanggan.id }})</h2>
+
+    <!-- Form untuk mengedit data -->
+    <!-- Action kosong berarti submit ke URL yang sama (/edit/{{ pelanggan.id }}) -->
+    <form method="POST" action="">
+      <div class="form-group">
+        <label for="nama">Nama:</label>
+        <!-- Isi value dengan data lama -->
+        <input type="text" id="nama" name="nama" value="{{ pelanggan.nama }}" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ pelanggan.email or '' }}">
+         <!-- `or ''` untuk handle jika email null/kosong di DB -->
+      </div>
+      <div class="form-group">
+        <label for="telepon">Nomor Telepon:</label>
+        <input type="tel" id="telepon" name="telepon" value="{{ pelanggan.telepon or '' }}">
+      </div>
+      <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Batal</a>
+    </form>
+
+  {% else %}
+    <!-- Ini seharusnya tidak terjadi jika logika di Flask benar -->
+    <h2>Error</h2>
+    <p>Data pelanggan tidak dapat dimuat untuk diedit.</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Kembali ke Daftar</a>
+  {% endif %}
+
+  <!-- Tambahkan CSS lagi jika perlu -->
+  <style>
+    .form-group { margin-bottom: 15px; }
+    .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+  </style>
+
+{% endblock %}
