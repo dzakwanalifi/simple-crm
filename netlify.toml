@@ -1,0 +1,14 @@
+[build]
+  # Perintah untuk menginstall dependencies dari requirements.txt
+  command = "pip install -r requirements.txt"
+  # Direktori yang akan di-publish (biasanya tidak terlalu relevan untuk pure backend/Flask
+  # kecuali ada aset statis yang ingin di-serve langsung oleh Netlify,
+  # tapi kita biarkan Flask yang handle static via url_for)
+  # publish = "/"
+
+# Opsional: Konfigurasi untuk Netlify Dev (running lokal)
+#[dev]
+#  command = "flask run"
+#  port = 5000
+#  publish = "static" # Memberitahu netlify dev dimana static files
+#  targetPort = 5000
