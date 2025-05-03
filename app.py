@@ -39,7 +39,7 @@ def index():
     try:
         # Ambil semua data dari tabel 'pelanggan', urutkan berdasarkan id
         response = supabase.table('pelanggan').select("*").order('id').execute()
-        print("Data diterima dari Supabase:", response.data) # Log data
+        # print("Data diterima dari Supabase:", response.data) # Log data
 
         if response.data:
             pelanggan = response.data
